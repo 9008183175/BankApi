@@ -28,4 +28,12 @@ public  class AccountServiceimpl implements AccountService {
 
 
     }
+
+    @Override
+    public AccountDto getAccountById(Long id) {
+        Account account = accountRepository
+                .findById(id)
+                .orElseThrow(() ->new RuntimeException("Account Does't Exiest"));
+        return AccountMapper.mapToAccountDto(account);
+    }
 }
